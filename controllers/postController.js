@@ -12,7 +12,7 @@ const createPost=async(req,res)=>{
         res.status(200).send({success:true,msg:"Data submit successfully",data:postData});
 
     }catch(error){
-        res.status(400).send({success:false,msg:error.message});
+        res.status(400).send({success:false,msg:"Please Enter correct Value"});
     }
 }
 

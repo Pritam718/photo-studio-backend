@@ -3,6 +3,7 @@ const app=express();
 const cors=require("cors");
 const router=require("./routes")
 const mongoose=require("mongoose");
+const cookieParser=require('cookie-parser')
 
 
 
@@ -18,14 +19,14 @@ mongoose.connect("mongodb://localhost:27017/Photo-Beckend").then(()=>{
 app.use(
     cors({
       origin: [
-        "http://localhost:8000",
+        "http://127.0.0.1:8000",
       ],
       credentials: true,
       methods: "GET,POST,PUT,DELETE",
     })
   );
 
-
+app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
 app.use("/api",router);

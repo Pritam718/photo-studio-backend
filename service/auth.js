@@ -1,5 +1,6 @@
 const jwt=require("jsonwebtoken")
-const secret="Pritam@718"
+require("dotenv").config();
+const secret=process.env.SECRET_KEY
 function setUser(user){
     return jwt.sign({
         _id: user._id,
@@ -9,7 +10,12 @@ function setUser(user){
 
 function getUser(token){
     if(!token) return null;
-    return jwt.verify(token,secret)
+    try{
+        return jwt.verify(token,secret)
+    }catch(error){
+        return null;
+    }
+    
 }
 
 module.exports={
