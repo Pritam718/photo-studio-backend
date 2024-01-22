@@ -3,7 +3,8 @@ const app=express();
 const cors=require("cors");
 const router=require("./routes")
 const mongoose=require("mongoose");
-const cookieParser=require('cookie-parser')
+const cookieParser=require('cookie-parser');
+const fileUpload = require("express-fileupload");
 
 const PORT = process.env.PORT||8000
 const DB_URL=process.env.DB_URL||"mongodb://localhost:27017/Photo-Beckend";
@@ -16,6 +17,10 @@ mongoose.connect(DB_URL).then(()=>{
 }).catch((err)=>{
     console.log("connection error =>" ,err.message);
 })
+
+app.use(fileUpload({
+  useTempFiles : true,
+}));
 
 app.use(
     cors({
